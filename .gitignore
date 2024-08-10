@@ -1,0 +1,23 @@
+# Ignore all files with a .log extension
+*.log
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore environment files
+.env
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore all files in the /build directory
+build/
+
+# Ignore all files in the /dist directory
+dist/
+
+# Ignore specific file
+secrets.txt
+
+# Ignore all files with a .bak extension in the project
+*.bak
