@@ -42,7 +42,7 @@
 <img src='./images/form.jpeg' alt='img'>
 
 **Nodemailer Mail Sending**
-<img src='./images/home2.jpeg' alt='img'>
+<img src='./images/mail.jpeg' alt='img'>
 
 **Invoice Details**
 <img src='./images/invoice.jpeg' alt='img'>
