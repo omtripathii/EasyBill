@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import CopyrightIcon from '@material-ui/icons/Copyright';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 
-import './invoice.css'
+
+import './index.css'
 
 function Invoice() {
 
@@ -14,7 +15,7 @@ function Invoice() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: `/${invId.id}`,
+            url: `http://localhost:8080/${invId.id}`,
             headers: {
                 'Content-Type': 'application/json'
             }

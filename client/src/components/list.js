@@ -1,41 +1,38 @@
-import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import axios from 'axios'
-import Card from './card'
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import axios from 'axios';
+import Card from './card';
+import './index.css';
 
-import './list.css'
+function List() {
+    const [invlist, setInvlist] = useState([]);
+    const navigate = useNavigate();
 
-
-function List(props) {
-
-    const [invlist, setInvlist] = useState([])
-
-    useEffect(() =>{
+    useEffect(() => {
         axios({
             method: 'get',
-            url: '/invoice',
+            url: 'http://localhost:8080/invoice',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-        .then(response =>{
-            setInvlist(response.data.message)
+        .then(response => {
+            console.log(response.data); // Inspect the API response
+            setInvlist(response.data.message || []);
         })
-        .catch(err =>{
+        .catch(err => {
             console.log(err);
-        })
-    }, [])
+        });
+    }, []);
 
     const viewHandler = (id) => {
-        props.history.push(`/${id}`)
+        navigate(`/${id}`);
     }
 
-    const invoiceList = invlist.map(inv =>{
-        return(
-            <li
-            key={inv._id}>
-                <Card
+    const invoiceList = (invlist || []).map(inv => (
+        <li key={inv._id}>
+            <Card
                 id={inv._id}
                 name={inv.name}
                 date={inv.date}
@@ -46,21 +43,21 @@ function List(props) {
                 service={inv.service}
                 labour={inv.labour}
                 view={viewHandler} />
-            </li>
-        )
-    })
+        </li>
+    ));
 
     return (
         <div className="list">
-            <h2 style={{'marginTop': '0'}}>
-                <Link style={{'textDecoration': 'none', 'color': 'white'}} 
-                to='/add'
-                 ><AddCircleOutlineIcon /> Create Invoice</Link></h2>
+            <h2 style={{ 'marginTop': '0' }}>
+                <Link style={{ 'textDecoration': 'none', 'color': 'white' }} to='/add'>
+                    <AddCircleOutlineIcon /> Create Invoice
+                </Link>
+            </h2>
             <ul>
                 {invoiceList}
             </ul>
         </div>
-    )
+    );
 }
 
-export default List
+export default List;

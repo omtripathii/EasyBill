@@ -1,9 +1,10 @@
-import axios from 'axios'
-import React, {useState} from 'react'
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-import './add.css'
-function Add(props) {
+import './index.css';
 
+function Add() {
     const [data, setData] = useState({
         name: '',
         address: '',
@@ -12,37 +13,40 @@ function Add(props) {
         product: 0,
         service: 0,
         labour: 0
-    })
+    });
+
+    const navigate = useNavigate(); // Use useNavigate instead of props.history
 
     const cancelHandler = () => {
-        props.history.push('/')
-    }
+        navigate('/'); // Use navigate to redirect
+    };
 
     const changeHandler = (event) => {
-        event.preventDefault()
-        const {name, value} = event.target
-        setData({...data, [name]: value})
-    }
+        event.preventDefault();
+        const { name, value } = event.target;
+        setData({ ...data, [name]: value });
+    };
 
     const submitHandler = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         axios({
             method: 'post',
-            url: '/invoice',
+            url: 'http://localhost:8080/invoice',
             headers: {
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(data)
         }).then((response) => {
-            props.history.push('/')
+            navigate('/'); // Use navigate to redirect after submission
             console.log(response);
         }).catch((err) => {
-            alert(err)
-        })
-    }
+            alert(err);
+        });
+    };
+
     return (
         <div className="form">
-            <form onSubmit={submitHandler} >
+            <form onSubmit={submitHandler}>
                 <label>Name</label>
                 <input type="text" onChange={changeHandler} name="name" placeholder="Enter full name" required />
                 <label>Address</label>
@@ -58,12 +62,12 @@ function Add(props) {
                 <label>Labour</label>
                 <input type="text" onChange={changeHandler} name="labour" placeholder="$75/hour" required />
                 <div className='btnDiv'>
-                <button className='btn' type="submit">Create</button>
-                <button className='btn' type="button" onClick={cancelHandler}>Cancel</button>
+                    <button className='btn' type="submit">Create</button>
+                    <button className='btn' type="button" onClick={cancelHandler}>Cancel</button>
                 </div>
             </form>
         </div>
-    )
+    );
 }
 
-export default Add
+export default Add;
