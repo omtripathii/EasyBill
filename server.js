@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
 // const cors = require('cors');
 
 app.use(cors({
-    origin: '*',
+    origin: ['https://om-easybill.onrender.com/', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
