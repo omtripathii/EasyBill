@@ -18,7 +18,7 @@ function Card(props) {
         console.log(typeof props.id);
         axios({
             method: 'patch',
-            url: 'http://localhost:8080/invoice',
+            url: '${process.env.REACT_APP_API_URL}/invoice',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -42,7 +42,7 @@ function Card(props) {
         e.preventDefault();
         axios({
             method: 'POST',
-            url: 'http://localhost:8080/mail',
+            url: '${process.env.REACT_APP_API_URL}/mail',
             headers: {
                 'Content-Type': 'application/json',
             },
