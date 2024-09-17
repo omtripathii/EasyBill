@@ -15,7 +15,7 @@ function Invoice() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: `${process.env.REACT_APP_API_URL}/${invId.id}`,
+            url: `${import.meta.env.VITE_API_URL}/${invId.id}`,
             headers: {
                 'Content-Type': 'application/json'
             }

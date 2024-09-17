@@ -12,7 +12,7 @@ function List() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: '${process.env.REACT_APP_API_URL}/invoice',
+            url: `${import.meta.env.VITE_API_URL}/invoice`,
             headers: {
                 'Content-Type': 'application/json'
             }
