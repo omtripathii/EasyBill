@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import axios from 'axios';
+import { API_URL } from '../config';
 import Card from './card';
 import './index.css';
 
@@ -12,7 +13,7 @@ function List() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: `${import.meta.env.VITE_API_URL}/invoice`,
+            url: `${API_URL}/invoice`,
             headers: {
                 'Content-Type': 'application/json'
             }

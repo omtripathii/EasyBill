@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-
+import { API_URL } from '../config';
 import './index.css';
 
 function Add() {
@@ -31,7 +31,7 @@ function Add() {
         e.preventDefault();
         axios({
             method: 'post',
-            url: '${import.meta.env.VITE_API_URL}/invoice',
+            url: `${API_URL}/invoice`,
             headers: {
                 'Content-Type': 'application/json'
             },

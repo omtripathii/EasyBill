@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import MailIcon from '@mui/icons-material/Mail';
+import { API_URL } from '../config';
+
 
 import './index.css';
 
@@ -18,7 +20,7 @@ function Card(props) {
         console.log(typeof props.id);
         axios({
             method: 'patch',
-            url: '${import.meta.env.VITE_API_URL}/invoice',
+            url: `${API_URL}/invoice`,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -42,7 +44,7 @@ function Card(props) {
         e.preventDefault();
         axios({
             method: 'POST',
-            url: '${import.meta.env.VITE_API_URL}/mail',
+            url: `${API_URL}/mail`,
             headers: {
                 'Content-Type': 'application/json',
             },

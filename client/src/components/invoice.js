@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import { API_URL } from '../config';
 
 
 import './index.css'
@@ -15,7 +16,7 @@ function Invoice() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: `${import.meta.env.VITE_API_URL}/${invId.id}`,
+            url: `${API_URL}/${invId.id}`,
             headers: {
                 'Content-Type': 'application/json'
             }
