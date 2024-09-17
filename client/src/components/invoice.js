@@ -15,7 +15,7 @@ function Invoice() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: `http://localhost:8080/${invId.id}`,
+            url: `${process.env.REACT_APP_API_URL}/${invId.id}`,
             headers: {
                 'Content-Type': 'application/json'
             }
